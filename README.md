@@ -795,7 +795,7 @@ After working through all 5 use cases you will understand:
 
 ## Author
 
-**Sneha** — Staff Mobile Engineering Lead · AI Engineering Bootcamp (Codebasics 2026)
+**Sneha**
 
 [![GitHub](https://img.shields.io/badge/GitHub-snehas13-181717?style=flat&logo=github)](https://github.com/snehas13)
 
