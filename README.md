@@ -682,25 +682,6 @@ Demonstrates three advanced LangChain output patterns using the antigravity
 Easter egg as the topic: streaming tokens as they generate, forcing structured
 JSON output, and processing multiple inputs in parallel.
 
-#### Three Output Patterns
-
-```mermaid
-graph TD
-    CHAIN[LCEL Chain\nprompt | llm | parser] --> INV
-    CHAIN --> STR
-    CHAIN --> BAT
-
-    INV["invoke(input)\n\nWaits for full response\nReturns complete string\nUse for: simple one-off calls"]
-
-    STR["stream(input)\n\nYields tokens one by one\nPrint as they arrive\nUse for: chatbots, real-time UI"]
-
-    BAT["batch([input1, input2, input3])\n\nRuns all inputs in parallel\nFar faster than sequential invoke\nUse for: bulk processing"]
-
-    style CHAIN fill:#1B4F72,color:#fff
-    style INV fill:#4A4A4A,color:#fff
-    style STR fill:#6C3483,color:#fff
-    style BAT fill:#2D6A4F,color:#fff
-```
 
 #### Streaming — How It Works
 
@@ -714,19 +695,6 @@ for token in chain.stream({"question": "Tell me about antigravity"}):
     print(token, end="", flush=True)   # each token prints as it arrives
 ```
 
-#### JsonOutputParser — Structured Data Extraction
-
-```mermaid
-graph LR
-    PROMPT["System: Respond ONLY with valid JSON\nin this exact format:\n{easter_eggs: [{name, command, description}]}"] --> LLM
-    LLM["Groq LLM"] --> RAW["Raw JSON string from LLM\n'{\"easter_eggs\": [{...}]}'"]
-    RAW --> JOP["JsonOutputParser\nParses string → Python dict"]
-    JOP --> OUT["Python dict ready to use\nresult['easter_eggs'][0]['name']"]
-
-    style LLM fill:#1B4F72,color:#fff
-    style JOP fill:#6C3483,color:#fff
-    style OUT fill:#2D6A4F,color:#fff
-```
 
 **Key learning:** `.invoke()` for single calls, `.stream()` for real-time UX,
 `.batch()` for throughput. All three work on any LCEL chain with zero
